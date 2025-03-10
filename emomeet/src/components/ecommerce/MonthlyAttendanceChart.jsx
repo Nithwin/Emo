@@ -3,7 +3,7 @@ import { Dropdown } from "../ui/dropdown/Dropdown";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { useState } from "react";
 
-export default function MonthlySalesChart() {
+export default function MonthlyAttendanceChart() {
   const options = {
     colors: ["#465fff"],
     chart: {
@@ -85,7 +85,7 @@ export default function MonthlySalesChart() {
   };
   const series = [
     {
-      name: "Sales",
+      name: "Attendance",
       data: [168, 385, 201, 298, 187, 195, 291, 110, 215, 390, 280, 112],
     },
   ];

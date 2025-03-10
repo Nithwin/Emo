@@ -62,7 +62,7 @@ export default function MonthlyTarget({value,name,color, content}) {
     setIsOpen(false);
   }
   return (
-    <div className="rounded-2xl border border-gray-200 bg-gray-100 ]">
+    <div className="rounded-2xl border border-gray-200 bg-gray-100 ">
       <div className="px-5 pt-5 bg-white shadow-default rounded-2xl pb-11 sm:px-6 sm:pt-6">
         <div className="flex justify-between">
           <div>

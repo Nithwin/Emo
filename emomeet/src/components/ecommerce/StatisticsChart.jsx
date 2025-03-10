@@ -8,7 +8,7 @@ export default function StatisticsChart() {
       position: "top",
       horizontalAlign: "left",
     },
-    colors: ["#465FFF", "#9CB9FF"], // Define line colors
+    colors: ["#00ff68", "#fe5e14","#ffec00","#0083ff"], // Define line colors
     chart: {
       fontFamily: "Outfit, sans-serif",
       height: 310,
@@ -102,12 +102,20 @@ export default function StatisticsChart() {
 
   const series = [
     {
-      name: "Sales",
+      name: "Engaged",
       data: [180, 190, 170, 160, 175, 165, 170, 205, 230, 210, 240, 235],
     },
     {
-      name: "Revenue",
+      name: "Bored",
+      data: [30, 60, 10, 80, 25, 90, 90, 10, 160, 100, 100, 30],
+    },
+    {
+      name: "Frustrated",
       data: [40, 30, 50, 40, 55, 40, 70, 100, 110, 120, 150, 140],
+    },
+    {
+      name: "Neutral",
+      data: [140, 130, 150, 140, 155, 140, 70, 100, 10, 20, 50, 10],
     },
   ];
   return (
