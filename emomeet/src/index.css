@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #1E2757;
+    --color-grey:#D9D9D9;
+    --color-lightblue:#1A71FF;
+    --color-darkblue:#1E2757;
+    --font-audiowide: "Audiowide", sans-serif;
+    --shadow-topleft: 10px -10px 0 10px #1A71FF;
+    --shadow-topright: -10px -10px 0 10px #1A71FF;
+    --shadow-invert: 0 20px 25px -5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 8px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1)) inset;
+    --shadow-box:10px 10px 35px #D1D9E6, inset 10px 10px 40px #D1D9E6;
+}
