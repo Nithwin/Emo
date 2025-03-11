@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from "react";
 
 export const Dropdown = ({
@@ -7,14 +6,14 @@ export const Dropdown = ({
   children,
   className = "",
 }) => {
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef(null); // Remove <HTMLDivElement> if not using TypeScript
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target) &&
-        !(event.target).closest(".dropdown-toggle")
+        !event.target.closest(".dropdown-toggle")
       ) {
         onClose();
       }
@@ -31,7 +30,7 @@ export const Dropdown = ({
   return (
     <div
       ref={dropdownRef}
-      className={`absolute z-40  right-0 mt-2  rounded-xl border border-gray-200 bg-white  shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark ${className}`}
+      className={`absolute z-40 right-0 mt-2 rounded-xl border border-gray-200 bg-white shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark ${className}`}
     >
       {children}
     </div>

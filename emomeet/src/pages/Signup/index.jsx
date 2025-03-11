@@ -9,9 +9,34 @@ const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    function handleSubmit(e){
+    function handleSubmit(e) {
         e.preventDefault();
-        console.log(email,password,confirmPassword);
+    
+        if (password !== confirmPassword) {
+            alert('Passwords do not match');
+            return;
+        }
+    
+        fetch('http://localhost:5000/api/auth/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password, confirmPassword }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.message === 'User created successfully') {
+                alert('Signup successful');
+                // Redirect or perform other actions
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
     return (
         <section className="min-h-dvh flex flex-col">

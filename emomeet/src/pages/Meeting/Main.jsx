@@ -10,7 +10,6 @@ const Main = () => {
   const [isScreenSharing, setIsScreenSharing] = useState(false);
   const [isCommentOn, setIsCommentOn] = useState(false);
   const [emotion, setEmotion] = useState("Detecting...");
-  const [eyeDirection, setEyeDirection] = useState("Center");
 
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -107,6 +106,16 @@ const Main = () => {
     setIsScreenSharing(false);
   };
 
+  const emotionToEmoji = {
+    happy: "😊",
+    sad: "😢",
+    angry: "😠",
+    surprised: "😮",
+    fearful: "😨",
+    disgusted: "🤢",
+    neutral: "😐",
+  };
+
   const detectEmotions = async () => {
     if (!videoRef.current) return;
     const video = videoRef.current;
@@ -121,9 +130,9 @@ const Main = () => {
         const maxEmotion = Object.keys(expressions).reduce((a, b) =>
           expressions[a] > expressions[b] ? a : b
         );
-        setEmotion(maxEmotion);
+        setEmotion(emotionToEmoji[maxEmotion] || "🤔"); // Use emoji or default to "🤔"
       } else {
-        setEmotion("No face detected");
+        setEmotion("❓"); // No face detected
       }
     } catch (error) {
       console.error("Error detecting emotions:", error);
@@ -150,7 +159,6 @@ const Main = () => {
               {isVideoOn && (
                 <div className="absolute bottom-3 left-3 bg-gray-900 bg-opacity-60 text-white p-2 rounded-md">
                   <p>Emotion: <span className="font-bold">{emotion}</span></p>
-                  <p>Eye Direction: <span className="font-bold">{eyeDirection}</span></p>
                 </div>
               )}
             </div>
@@ -159,35 +167,29 @@ const Main = () => {
             <div className='col-span-2 border border-gray-500 rounded-2xl row-span-5 overflow-y-auto '>
               <div className="flex flex-col gap-2 p-2 overflow-y-auto">
                 {duplicateVideos.map((video) => (
-                  
-                  <div>
+                  <div key={video.id}>
                     {isVideoOn || isScreenSharing ? (
-                  <div key={video.id} className="relative border border-gray-300 rounded-lg overflow-hidden min-h-[10rem]">
-                    <video
-                      autoPlay
-                      muted
-                      className="w-full h-24 object-cover"
-                      src={mediaStreamRef.current ? mediaStreamRef.current : undefined} // Use the main stream or a placeholder
-                    />
-                    <p className="absolute bottom-1 left-1 text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded-full">
-                      {video.name}
-                    </p>
-                    </div>
+                      <div className="relative border border-gray-300 rounded-lg overflow-hidden min-h-[10rem]">
+                        <video
+                          autoPlay
+                          muted
+                          className="w-full h-24 object-cover"
+                          src={mediaStreamRef.current ? mediaStreamRef.current : undefined} // Use the main stream or a placeholder
+                        />
+                        <p className="absolute bottom-1 left-1 text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded-full">
+                          {video.name}
+                        </p>
+                      </div>
                     ) : (
-                      <div className="w-full h-full bg-black flex items-center justify-center rounded-2xl min-h-[10rem] relative ">
-                         <p className="absolute bottom-1 left-1 text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded-full">
-                      {video.name}
-                    </p>
+                      <div className="w-full h-full bg-black flex items-center justify-center rounded-2xl min-h-[10rem] relative">
+                        <p className="absolute bottom-1 left-1 text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded-full">
+                          {video.name}
+                        </p>
                         <p className="text-white text-lg font-semibold">Video Off</p>
                       </div>
-                    ) 
-                  }
-                  
+                    )}
                   </div>
-                ))
-                
-                }
-                
+                ))}
               </div>
             </div>
           </div>
@@ -200,7 +202,7 @@ const Main = () => {
               {/* Chat Header */}
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-lg font-semibold">Chat</h2>
-                <button onClick={() => setIsChatOpen(false)} className="text-gray-500 hover:text-gray-700">
+                <button onClick={() => setIsCommentOn(false)} className="text-gray-500 hover:text-gray-700">
                   ✕
                 </button>
               </div>

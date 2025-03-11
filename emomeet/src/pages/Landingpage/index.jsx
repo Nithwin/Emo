@@ -4,6 +4,7 @@ import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <>
@@ -34,8 +35,8 @@ const Home = () => {
             </div>
             <div className="">
               <div className="flex gap-15 lg:gap-20 justify-center lg:justify-start">
-                <button className="bg-lightblue text-white font-bold px-[2.4rem] lg:px-[4rem] py-[1rem] rounded-2xl text-xl lg:text-2xl tracking-wide">Join</button>
-                <button className="bg-lightblue text-white font-bold px-[2rem] lg:px-[4rem] py-[1rem] rounded-2xl text-xl lg:text-2xl tracking-wide">Create</button>
+                <Link to={"/meeting-waiting"} className="bg-lightblue text-white font-bold px-[2.4rem] lg:px-[4rem] py-[1rem] rounded-2xl text-xl lg:text-2xl tracking-wide">Join</Link>
+                <Link to={"/dashboard"} className="bg-lightblue text-white font-bold px-[2rem] lg:px-[4rem] py-[1rem] rounded-2xl text-xl lg:text-2xl tracking-wide">Create</Link>
               </div>
             </div>
           </div>

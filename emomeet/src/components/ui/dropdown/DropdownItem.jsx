@@ -1,7 +1,6 @@
+import { Link } from "react-router-dom"; // Correct import
 
-import { Link } from "react-router";
-
-export const  DropdownItem = ({
+export const DropdownItem = ({
   tag = "button",
   to,
   onClick,
@@ -16,8 +15,8 @@ export const  DropdownItem = ({
     if (tag === "button") {
       event.preventDefault();
     }
-    if (onClick) onClick();
-    if (onItemClick) onItemClick();
+    if (onClick) onClick(event); // Call onClick if provided
+    if (onItemClick) onItemClick(); // Call onItemClick if provided
   };
 
   if (tag === "a" && to) {
@@ -28,9 +27,18 @@ export const  DropdownItem = ({
     );
   }
 
+  if (tag === "button") {
+    return (
+      <button onClick={handleClick} className={combinedClasses}>
+        {children}
+      </button>
+    );
+  }
+
+  // Default case for invalid tags
   return (
-    <button onClick={handleClick} className={combinedClasses}>
+    <div className={combinedClasses} onClick={handleClick}>
       {children}
-    </button>
+    </div>
   );
 };
